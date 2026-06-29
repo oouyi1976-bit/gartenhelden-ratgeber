@@ -1,0 +1,47 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+---
+
+<BaseLayout
+  title="Datenschutz"
+  description="Datenschutzhinweise für GartenHelden Ratgeber mit Informationen zu Hosting, Kontakt und Affiliate-Links."
+>
+  <Breadcrumbs items={[{ label: "Datenschutz" }]} />
+  <section class="container-page pb-16 pt-3 sm:pb-20">
+    <div class="max-w-3xl rounded-[2rem] bg-white p-6 shadow-card sm:p-10">
+      <p class="eyebrow">Rechtliches</p>
+      <h1 class="mt-3 font-serif text-5xl font-bold text-charcoal">Datenschutz</h1>
+      <div class="mt-8 grid gap-7 text-base leading-8 text-charcoal/74">
+        <section>
+          <h2 class="font-serif text-2xl font-bold text-charcoal">Grundsatz</h2>
+          <p>
+            Diese Seite ist als statische Astro-Webseite vorbereitet. Es gibt aktuell keine Kommentarfunktion, kein Kundenkonto
+            und keine echte Newsletter-Anmeldung.
+          </p>
+        </section>
+        <section>
+          <h2 class="font-serif text-2xl font-bold text-charcoal">Hosting</h2>
+          <p>
+            Beim Aufruf der Seite können durch den Hosting-Anbieter technische Zugriffsdaten verarbeitet werden, etwa IP-Adresse,
+            Zeitpunkt des Abrufs, Browsertyp und angeforderte Datei. Die konkrete Hosting-Konfiguration ist vor Veröffentlichung zu ergänzen.
+          </p>
+        </section>
+        <section>
+          <h2 class="font-serif text-2xl font-bold text-charcoal">Affiliate-Links</h2>
+          <p>
+            Wenn echte Amazon-Partnerlinks eingetragen werden, führen diese zu Amazon.de. Dort gelten die Datenschutzbestimmungen
+            von Amazon. Auf dieser Seite werden keine Amazon-Produktbilder, Sternebewertungen oder Preise eingebunden.
+          </p>
+        </section>
+        <section>
+          <h2 class="font-serif text-2xl font-bold text-charcoal">Kontakt</h2>
+          <p>
+            Wenn du per E-Mail Kontakt aufnimmst, werden die übermittelten Angaben zur Bearbeitung der Anfrage verwendet.
+            Die konkrete Kontaktadresse ist im Impressum einzutragen.
+          </p>
+        </section>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,36 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import ArticleCard from "@/components/ArticleCard.astro";
+import NewsletterBox from "@/components/NewsletterBox.astro";
+import { articles } from "@/data/articles";
+---
+
+<BaseLayout
+  title="Garten-Ratgeber"
+  description="Alle GartenHelden Ratgeber zu Anfängerfragen, Hochbeet, Rasenpflege, Bewässerung, Balkon-Garten, Kompost und Pflanzenpflege."
+>
+  <Breadcrumbs items={[{ label: "Ratgeber" }]} />
+
+  <section class="container-page pb-12 pt-3">
+    <div class="max-w-4xl">
+      <p class="eyebrow">Gartenwissen</p>
+      <h1 class="mt-3 font-serif text-5xl font-bold leading-tight text-charcoal sm:text-6xl">
+        Ratgeber für Garten, Balkon und Terrasse
+      </h1>
+      <p class="mt-5 text-lg leading-8 text-charcoal/70">
+        Verständliche Artikel mit praktischen Schritten, saisonalen Hinweisen und ruhiger Orientierung für den Alltag im Garten.
+      </p>
+    </div>
+  </section>
+
+  <section class="container-page pb-16 sm:pb-20">
+    <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      {articles.map((article) => <ArticleCard article={article} />)}
+    </div>
+  </section>
+
+  <section class="container-page pb-16 sm:pb-20">
+    <NewsletterBox />
+  </section>
+</BaseLayout>

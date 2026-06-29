@@ -1,0 +1,37 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+---
+
+<BaseLayout
+  title="Impressum"
+  description="Impressum der deutschen Garten-Affiliate-Seite GartenHelden Ratgeber."
+>
+  <Breadcrumbs items={[{ label: "Impressum" }]} />
+  <section class="container-page pb-16 pt-3 sm:pb-20">
+    <div class="max-w-3xl rounded-[2rem] bg-white p-6 shadow-card sm:p-10">
+      <p class="eyebrow">Rechtliches</p>
+      <h1 class="mt-3 font-serif text-5xl font-bold text-charcoal">Impressum</h1>
+      <div class="mt-8 grid gap-6 text-base leading-8 text-charcoal/74">
+        <section>
+          <h2 class="font-serif text-2xl font-bold text-charcoal">Angaben gemäß § 5 DDG</h2>
+          <p>
+            Bitte vor Veröffentlichung mit den korrekten Betreiberangaben ergänzen:
+            Name, Anschrift, Kontaktadresse und gegebenenfalls Umsatzsteuer-Identifikationsnummer.
+          </p>
+        </section>
+        <section>
+          <h2 class="font-serif text-2xl font-bold text-charcoal">Kontakt</h2>
+          <p>E-Mail: bitte-eintragen@example.de</p>
+        </section>
+        <section>
+          <h2 class="font-serif text-2xl font-bold text-charcoal">Affiliate-Hinweis</h2>
+          <p>
+            Als Amazon-Partner verdiene ich an qualifizierten Verkäufen. Produktlinks werden mit
+            <code class="rounded bg-sage-50 px-1.5 py-0.5 text-sm">rel="nofollow sponsored"</code> gekennzeichnet.
+          </p>
+        </section>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

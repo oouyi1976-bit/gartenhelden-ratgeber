@@ -1,0 +1,59 @@
+---
+import { categories } from "@/data/categories";
+
+const primaryCategories = categories.slice(0, 7);
+---
+
+<header class="sticky top-0 z-50 border-b border-sage-900/10 bg-cream/92 backdrop-blur-xl">
+  <div class="container-page flex min-h-20 items-center justify-between gap-5">
+    <a href="/" class="focus-ring shrink-0 rounded-md" aria-label="GartenHelden Ratgeber Startseite">
+      <img src="/logo.svg" alt="GartenHelden Ratgeber" class="h-12 w-auto" />
+    </a>
+
+    <nav class="hidden items-center gap-1 lg:flex" aria-label="Hauptnavigation">
+      {primaryCategories.map((category) => (
+        <a
+          href={`/${category.slug}/`}
+          class="focus-ring rounded-full px-3 py-2 text-sm font-semibold text-charcoal/78 transition hover:bg-sage-100 hover:text-sage-900"
+        >
+          {category.title}
+        </a>
+      ))}
+      <a
+        href="/ratgeber/"
+        class="focus-ring rounded-full px-3 py-2 text-sm font-semibold text-charcoal/78 transition hover:bg-sage-100 hover:text-sage-900"
+      >
+        Ratgeber
+      </a>
+    </nav>
+
+    <a
+      href="/beste-gartenprodukte/"
+      class="focus-ring hidden rounded-full bg-sage-700 px-4 py-2.5 text-sm font-bold text-white shadow-card transition hover:bg-sage-800 md:inline-flex"
+    >
+      Produktauswahl
+    </a>
+
+    <details class="group relative lg:hidden">
+      <summary class="focus-ring flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-full border border-sage-900/15 bg-white/70 text-charcoal shadow-card marker:hidden">
+        <span class="sr-only">Menü öffnen</span>
+        <span class="block h-0.5 w-5 bg-current before:mb-1.5 before:block before:h-0.5 before:w-5 before:bg-current after:mt-1.5 after:block after:h-0.5 after:w-5 after:bg-current"></span>
+      </summary>
+      <div class="absolute right-0 mt-3 w-72 rounded-3xl border border-sage-900/10 bg-cream p-3 shadow-soft">
+        <nav class="grid gap-1" aria-label="Mobile Navigation">
+          {primaryCategories.map((category) => (
+            <a href={`/${category.slug}/`} class="focus-ring rounded-2xl px-4 py-3 text-sm font-semibold hover:bg-sage-100">
+              {category.title}
+            </a>
+          ))}
+          <a href="/beste-gartenprodukte/" class="focus-ring rounded-2xl px-4 py-3 text-sm font-semibold hover:bg-sage-100">
+            Beste Gartenprodukte
+          </a>
+          <a href="/ratgeber/" class="focus-ring rounded-2xl px-4 py-3 text-sm font-semibold hover:bg-sage-100">
+            Ratgeber
+          </a>
+        </nav>
+      </div>
+    </details>
+  </div>
+</header>

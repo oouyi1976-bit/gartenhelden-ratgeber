@@ -1,0 +1,79 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import AffiliateNotice from "@/components/AffiliateNotice.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import ProductCard from "@/components/ProductCard.astro";
+import ArticleCard from "@/components/ArticleCard.astro";
+import NewsletterBox from "@/components/NewsletterBox.astro";
+import { categories, type GardenCategory } from "@/data/categories";
+import { productsByCategory, type ProductCategory } from "@/data/gardenProducts";
+import { articles } from "@/data/articles";
+
+export function getStaticPaths() {
+  return categories.map((category) => ({
+    params: { categorySlug: category.slug },
+    props: { category },
+  }));
+}
+
+interface Props {
+  category: GardenCategory;
+}
+
+const { category } = Astro.props;
+const products = productsByCategory(category.title as ProductCategory);
+const relatedArticles = articles.filter((article) => article.category === category.title).slice(0, 3);
+---
+
+<BaseLayout title={category.title} description={category.description} ogImage={category.image}>
+  <Breadcrumbs items={[{ label: category.title }]} />
+
+  <section class="container-page pb-12">
+    <div class="grid overflow-hidden rounded-[2rem] bg-sage-900 text-white shadow-soft lg:grid-cols-[1.05fr_0.95fr]">
+      <div class="p-7 sm:p-10 lg:p-12">
+        <p class="text-xs font-bold uppercase tracking-[0.18em] text-sage-200">Kategorie</p>
+        <h1 class="mt-3 font-serif text-4xl font-bold leading-tight sm:text-5xl">{category.title}</h1>
+        <p class="mt-5 max-w-2xl text-lg leading-8 text-white/82">{category.intro}</p>
+        <div class="mt-6 flex flex-wrap gap-2">
+          {category.highlights.map((highlight) => (
+            <span class="rounded-full bg-white/10 px-3 py-1.5 text-sm font-bold text-white">{highlight}</span>
+          ))}
+        </div>
+      </div>
+      <img src={category.image} alt={category.title} class="h-full min-h-80 w-full object-cover" />
+    </div>
+  </section>
+
+  <AffiliateNotice />
+
+  <section class="container-page py-16 sm:py-20">
+    <div class="max-w-3xl">
+      <p class="eyebrow">Auswahl</p>
+      <h2 class="mt-3 font-serif text-4xl font-bold leading-tight text-charcoal">Produkte in {category.title}</h2>
+      <p class="mt-4 text-lg leading-8 text-charcoal/70">
+        Produktplätze mit neutralen lokalen Bildern. Ohne echte ASIN bleiben Titel, Bild und Button unverlinkt.
+      </p>
+    </div>
+    <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {products.map((product) => <ProductCard product={product} />)}
+    </div>
+  </section>
+
+  {relatedArticles.length > 0 && (
+    <section class="bg-linen/65 py-16 sm:py-20">
+      <div class="container-page">
+        <div class="max-w-3xl">
+          <p class="eyebrow">Ratgeber</p>
+          <h2 class="mt-3 font-serif text-4xl font-bold leading-tight text-charcoal">Passende Artikel</h2>
+        </div>
+        <div class="mt-10 grid gap-6 md:grid-cols-3">
+          {relatedArticles.map((article) => <ArticleCard article={article} />)}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="container-page py-16 sm:py-20">
+    <NewsletterBox />
+  </section>
+</BaseLayout>

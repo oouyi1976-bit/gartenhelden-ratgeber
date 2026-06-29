@@ -1,0 +1,27 @@
+---
+import type { GardenArticle } from "@/data/articles";
+
+interface Props {
+  article: GardenArticle;
+}
+
+const { article } = Astro.props;
+---
+
+<article class="group overflow-hidden rounded-[1.75rem] border border-sage-900/10 bg-white shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-soft">
+  <a href={`/ratgeber/${article.slug}/`} class="focus-ring block">
+    <div class="aspect-[5/3] overflow-hidden bg-sage-50">
+      <img
+        src={article.image}
+        alt={article.title}
+        loading="lazy"
+        class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+      />
+    </div>
+    <div class="p-5">
+      <p class="text-xs font-bold uppercase tracking-[0.16em] text-bark">{article.category} · {article.readingTime}</p>
+      <h3 class="mt-2 font-serif text-2xl font-bold leading-tight text-charcoal">{article.title}</h3>
+      <p class="mt-3 text-sm leading-6 text-charcoal/70">{article.description}</p>
+    </div>
+  </a>
+</article>

@@ -1,0 +1,50 @@
+---
+import { categories } from "@/data/categories";
+import { articles } from "@/data/articles";
+import { affiliateDisclosure } from "@/data/gardenProducts";
+
+const footerArticles = articles.slice(0, 6);
+---
+
+<footer class="border-t border-sage-900/10 bg-charcoal text-cream">
+  <div class="container-page grid gap-10 py-14 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
+    <div>
+      <img src="/logo.svg" alt="GartenHelden Ratgeber" class="h-12 w-auto rounded-xl bg-cream p-1" />
+      <p class="mt-5 max-w-sm text-sm leading-6 text-cream/78">
+        Moderne Garten-Ratgeber, Produktauswahl und praktische Orientierung für Beet, Balkon, Rasen und Terrasse.
+      </p>
+      <p class="mt-5 rounded-2xl border border-cream/15 bg-white/5 p-4 text-sm font-semibold leading-6 text-cream">
+        {affiliateDisclosure}
+      </p>
+    </div>
+
+    <div>
+      <h2 class="text-sm font-bold uppercase tracking-[0.16em] text-sage-200">Kategorien</h2>
+      <nav class="mt-4 grid gap-2 text-sm text-cream/78" aria-label="Footer Kategorien">
+        {categories.map((category) => (
+          <a href={`/${category.slug}/`} class="hover:text-white">{category.title}</a>
+        ))}
+      </nav>
+    </div>
+
+    <div>
+      <h2 class="text-sm font-bold uppercase tracking-[0.16em] text-sage-200">Ratgeber</h2>
+      <nav class="mt-4 grid gap-2 text-sm text-cream/78" aria-label="Footer Ratgeber">
+        {footerArticles.map((article) => (
+          <a href={`/ratgeber/${article.slug}/`} class="hover:text-white">{article.title}</a>
+        ))}
+      </nav>
+    </div>
+
+    <div>
+      <h2 class="text-sm font-bold uppercase tracking-[0.16em] text-sage-200">Rechtliches</h2>
+      <nav class="mt-4 grid gap-2 text-sm text-cream/78" aria-label="Footer Rechtliches">
+        <a href="/impressum/" class="hover:text-white">Impressum</a>
+        <a href="/datenschutz/" class="hover:text-white">Datenschutz</a>
+      </nav>
+      <p class="mt-5 text-sm leading-6 text-cream/70">
+        Amazon und das Amazon-Logo sind Warenzeichen von Amazon.com, Inc. oder eines verbundenen Unternehmens.
+      </p>
+    </div>
+  </div>
+</footer>

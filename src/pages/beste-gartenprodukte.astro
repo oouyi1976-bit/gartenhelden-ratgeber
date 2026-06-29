@@ -1,0 +1,54 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import AffiliateNotice from "@/components/AffiliateNotice.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import ProductCard from "@/components/ProductCard.astro";
+import { categories } from "@/data/categories";
+import { productsByCategory, type ProductCategory } from "@/data/gardenProducts";
+---
+
+<BaseLayout
+  title="Beste Gartenprodukte: kuratierte Auswahl"
+  description="Kuratierte Gartenprodukt-Übersicht ohne erfundene Testsieger, Bewertungen oder Preisangaben."
+>
+  <Breadcrumbs items={[{ label: "Beste Gartenprodukte" }]} />
+
+  <section class="container-page pb-12 pt-3">
+    <div class="max-w-4xl">
+      <p class="eyebrow">Kuratierte Übersicht</p>
+      <h1 class="mt-3 font-serif text-5xl font-bold leading-tight text-charcoal sm:text-6xl">
+        Beste Gartenprodukte für einen gut sortierten Garten
+      </h1>
+      <p class="mt-5 text-lg leading-8 text-charcoal/70">
+        Diese Übersicht ist eine redaktionelle Auswahl typischer Gartenhelfer. Sie enthält keine erfundenen Testsieger,
+        keine Sternebewertungen und keine Preisangaben.
+      </p>
+    </div>
+  </section>
+
+  <AffiliateNotice />
+
+  <section class="container-page py-16 sm:py-20">
+    <div class="grid gap-12">
+      {categories.map((category) => {
+        const products = productsByCategory(category.title as ProductCategory);
+        return (
+          <section class="scroll-mt-28" id={category.slug}>
+            <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p class="eyebrow">{category.title}</p>
+                <h2 class="mt-2 font-serif text-3xl font-bold text-charcoal">{category.description}</h2>
+              </div>
+              <a href={`/${category.slug}/`} class="focus-ring inline-flex rounded-full border border-sage-900/15 bg-white px-4 py-2.5 text-sm font-bold text-sage-900 shadow-card hover:bg-sage-50">
+                Kategorie öffnen
+              </a>
+            </div>
+            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {products.map((product) => <ProductCard product={product} />)}
+            </div>
+          </section>
+        );
+      })}
+    </div>
+  </section>
+</BaseLayout>
