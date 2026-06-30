@@ -24,7 +24,7 @@ export interface GardenProduct {
 const placeholder = {
   affiliateUrl: "",
   affiliateStatus: "placeholder" as const,
-  buttonText: "Amazon-Link folgt",
+  buttonText: "Noch kein geprüfter Link",
 };
 
 export const amazonPartnerId = "epic05e-21";
